@@ -24,11 +24,11 @@ void	get_height(char *path, t_map *map)
 		exit(ft_printf("error opening map"));
 	while ((line = get_next_line(fd)) != NULL)
 	{
+		ft_printf(line);
 		i++;
 		free(line);
 	}
-	if (i > 0)
-		map->height = i;
+	map->height = i;
 	close(fd);
 }
 
@@ -43,7 +43,6 @@ void	get_width(char *path, t_map *map)
 	width = 0;
 	fd = open(path, O_RDONLY);
 	line = get_next_line(fd);
-	ft_printf("LINE: %s\n", line);
 	while (line[i] != '\n')
 	{
 		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\r' && line[i] != '\v')

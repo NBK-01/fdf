@@ -35,8 +35,8 @@ void	init_fdf(char *path)
 {
 	t_map	map;
 
-	get_width(path, &map);
 	get_height(path, &map);
+	get_width(path, &map);
 	ft_printf("H:%d\n", map.height);
 	ft_printf("W:%d\n", map.width);
 	init_window(path);
