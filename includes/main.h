@@ -25,30 +25,28 @@ typedef struct s_data
 	void *img_ptr;
 }	t_data;
 
+typedef struct s_map
+{
+	int	width;
+	int	height;
+}	t_map;
+
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				VALIDATION / PARSING			   */
 /*/////////////////////////////////////////////////////////////////////////*/
 int	validate_args(int ac, char **av);
 void	init_fdf(char *av);
+void	get_width(char *path, t_map *map);
+void	get_height(char *path, t_map *map);
 
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				MLX AND HOOKS				   */
 /*/////////////////////////////////////////////////////////////////////////*/
 int	on_keypress(int keysym, t_data *data);
 int	on_destroy(t_data *data);
-void	init_window(char *av); //TEMPORARY
-
-// TEMPO
- 
-// TEST 1
-typedef struct s_map
-{
-	int	x;
-	int	y;
-	int	z;
-}	t_map;
-
-// TEST 2
+void	init_window(char *path); //TEMPORARY
+//
+//
 typedef struct s_colors
 {
 	int	r;

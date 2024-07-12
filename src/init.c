@@ -31,17 +31,13 @@ void	init_window(char *av)
 	mlx_loop(data.mlx_ptr);
 }
 
-void	init_fdf(char *av)
+void	init_fdf(char *path)
 {
-	int	fd;
-	char	*line;
+	t_map	map;
 
-	fd = open(av, O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		ft_printf("%s", line);
-		free(line);
-	}
-	close (fd);
-	init_window(av);
+	get_width(path, &map);
+	get_height(path, &map);
+	ft_printf("H:%d\n", map.height);
+	ft_printf("W:%d\n", map.width);
+	init_window(path);
 }
