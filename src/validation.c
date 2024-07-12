@@ -15,7 +15,7 @@
 int	validate_args(int ac, char **av)
 {
 	int				i;
-	char			*str;
+	char			*ext;
 	unsigned int	start;
 
 	i = -1;
@@ -28,9 +28,13 @@ int	validate_args(int ac, char **av)
 			if (av[1][i] == '.')
 				start = i;
 		}
-		str = ft_substr(av[1], start, ft_strlen(av[1]));
-		if (ft_strncmp(str, ".fdf", 4) != 0)
+		ext = ft_substr(av[1], start, ft_strlen(av[1]));
+		if (ft_strncmp(ext, ".fdf", 4) != 0)
+		{
+			free(ext);
 			return (ft_printf("Error: map ext should be .fdf\n"));
+		}
 	}
+	free(ext);
 	return (0);
 }

@@ -18,21 +18,27 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
+typedef struct s_data
+{
+	void *mlx_ptr;
+	void *win_ptr;
+	void *img_ptr;
+}	t_data;
+
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				VALIDATION / PARSING			   */
 /*/////////////////////////////////////////////////////////////////////////*/
 int	validate_args(int ac, char **av);
 void	init_fdf(char *av);
 
+/*/////////////////////////////////////////////////////////////////////////*/
+/*				MLX AND HOOKS				   */
+/*/////////////////////////////////////////////////////////////////////////*/
+int	on_keypress(int keysym, t_data *data);
+int	on_destroy(t_data *data);
+void	init_window(char *av); //TEMPORARY
+
 // TEMPO
-typedef struct s_data
-{
-	void *mlx_ptr;
-	void *win_ptr;
-	void *img_ptr;
-	int	 *w;
-	int  *h;
-}	t_data;
  
 // TEST 1
 typedef struct s_map
