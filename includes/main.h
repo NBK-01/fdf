@@ -29,6 +29,7 @@ typedef struct s_map
 {
 	int	width;
 	int	height;
+	int	**mat;
 }	t_map;
 
 /*/////////////////////////////////////////////////////////////////////////*/
@@ -36,8 +37,9 @@ typedef struct s_map
 /*/////////////////////////////////////////////////////////////////////////*/
 int	validate_args(int ac, char **av);
 void	init_fdf(char *av);
-void	get_width(char *path, t_map *map);
-void	get_height(char *path, t_map *map);
+int	get_width(char *path);
+int	get_height(char *path);
+void	get_alt(char *path, t_map *map);
 
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				MLX AND HOOKS				   */

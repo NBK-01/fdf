@@ -12,7 +12,7 @@
 
 #include "../includes/main.h"
 
-void	get_height(char *path, t_map *map)
+int	get_height(char *path)
 {
 	int	i;
 	int	fd;
@@ -24,32 +24,68 @@ void	get_height(char *path, t_map *map)
 		exit(ft_printf("error opening map"));
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		ft_printf(line);
-		i++;
 		free(line);
+		i++;
 	}
-	map->height = i;
 	close(fd);
+	return (i);
 }
 
-void	get_width(char *path, t_map *map)
+int	get_width(char *path)
 {
-	int	i;
 	int	width;
 	int	fd;
 	char	*line;
+	char	**temp;
 
-	i = 0;
 	width = 0;
 	fd = open(path, O_RDONLY);
 	line = get_next_line(fd);
-	while (line[i] != '\n')
+	temp = ft_split(line, ' ');
+	while (temp[width])
+		width++;
+	free(line);
+	free(temp);
+	close(fd);
+	return (width);
+}
+#include <stdio.h>
+void	get_z(char *line, int *axis)
+{
+	char	**z;
+	int	i;
+
+	z = ft_split(line, ' ');
+	i = 0;
+	while (z[i])
 	{
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\r' && line[i] != '\v')
-			width++;
+		axis[i] = ft_atoi(z[i]);
+		free(z[i]);
 		i++;
 	}
-	map->width = width;
-	free(line);
+	free(z);
+}
+
+void	get_alt(char *path, t_map *map)
+{
+	int	i;
+	int	fd;
+	char	*line;
+
+	map->height = get_height(path);
+	map->width = get_width(path);
+	map->mat = (int **)malloc(sizeof(int*) * (map->height + 1));
+	i = 0;
+	while(i <= map->height)
+		map->mat[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
+	fd = open(path, O_RDONLY, 0);
+	i = 0;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		get_z(line, map->mat[i]);
+		free(line);
+		i++;
+	}
 	close(fd);
+	map->mat[i] = NULL;
 }

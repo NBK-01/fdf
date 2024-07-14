@@ -30,14 +30,21 @@ void	init_window(char *av)
  
 	mlx_loop(data.mlx_ptr);
 }
-
+#include <stdio.h>
 void	init_fdf(char *path)
 {
-	t_map	map;
+	t_map	*map;
 
-	get_height(path, &map);
-	get_width(path, &map);
-	ft_printf("H:%d\n", map.height);
-	ft_printf("W:%d\n", map.width);
+	map = (t_map*)malloc(sizeof(t_map));
+	get_alt(path, map);
+	/*while (i < map.height)
+	{
+		while (j < map.width)
+		{
+			printf("%d", map.mat[i][j]);
+			j++;
+		}
+		i++;
+	}*/
 	init_window(path);
 }
