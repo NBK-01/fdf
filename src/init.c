@@ -30,42 +30,12 @@ void	init_window(char *av)
  
 	mlx_loop(data.mlx_ptr);
 }
-void	print_map(t_file **d)
+
+void	init_fdf(char *path, t_map *map, t_file **file)
 {
-	t_file	**file;
-
-	file = d;
-
-	while ((*file))
-	{
-		ft_printf("%s", (*file)->line);
-		(*file) = (*file)->next;
-	}
-}
-#include <stdio.h>
-void	init_fdf(char *path)
-{
-	t_map	*map;
-	t_file	*file;
-	int	i;
-	int	j;
-
-	map = (t_map*)malloc(sizeof(t_map));
-	file = NULL;
-	store_file(path, &file);
-	get_alt(&file, map);
-	i = 0;
-	while (i < map->height)
-	{
-		j = 0;
-		while (j < map->width)
-		{
-			printf("%3d", map->mat[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	//init_window(path);
+	store_file(path, file);
+	get_alt(file, map);
+	//ft_printf("%d", map->mat[2][2]);
+	init_window(path);
 }
 

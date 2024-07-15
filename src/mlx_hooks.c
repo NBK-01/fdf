@@ -27,3 +27,8 @@ int	on_destroy(t_data *data)
 	exit(0);
 	return (0);
 }
+
+float	algo(float x, float y, float x1, float x2)
+{
+
+}

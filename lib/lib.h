@@ -78,5 +78,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 t_file	*ft_lstnew(char *content);
 void	ft_lstadd_back(t_file **lst, t_file *new);
 t_file	*ft_lstlast(t_file *lst);
+void	ft_lstclear(t_file **lst, void (*del)(char*));
+void	ft_lstdelone(t_file *lst, void (*del)(char*));
 
 #endif
