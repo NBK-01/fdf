@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkanaan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/11 09:21:29 by nkanaan           #+#    #+#             */
-/*   Updated: 2024/07/11 09:21:31 by nkanaan          ###   ########.fr       */
+/*   Created: 2024/06/24 11:24:10 by nkanaan           #+#    #+#             */
+/*   Updated: 2024/06/24 11:32:26 by nkanaan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/main.h"
+#include "libft.h"
 
-void	read_file(char *line, t_file **file)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_file *new;
+	t_list	*tmp;
 
-	new = ft_lstnew(line);
-	ft_lstadd_back(file, new);
-}
-
-void	store_file(char *path, t_file **file)
-{
-	int	fd;
-	char	*line;
-
-	fd = open(path, O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
-		read_file(line, file);
-	close(fd);
+	if (!lst || !f)
+		return ;
+	while (lst)
+	{
+		tmp = lst->next;
+		f(lst->content);
+		lst = tmp;
+	}
 }

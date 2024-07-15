@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkanaan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/11 09:21:29 by nkanaan           #+#    #+#             */
-/*   Updated: 2024/07/11 09:21:31 by nkanaan          ###   ########.fr       */
+/*   Created: 2024/06/14 11:30:44 by nkanaan           #+#    #+#             */
+/*   Updated: 2024/06/14 18:43:45 by nkanaan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/main.h"
+#include "libft.h"
 
-void	read_file(char *line, t_file **file)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	t_file *new;
-
-	new = ft_lstnew(line);
-	ft_lstadd_back(file, new);
-}
-
-void	store_file(char *path, t_file **file)
-{
-	int	fd;
-	char	*line;
-
-	fd = open(path, O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
-		read_file(line, file);
-	close(fd);
+	if (lst)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
 }

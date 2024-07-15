@@ -4,7 +4,7 @@ CC	=	gcc
 
 AUTHOR 	=	nkanaan
 
-FLAGS	=	-Wall -Wextra -Werror 
+FLAGS	=	-Wall -Wextra -Werror -g
 
 MLX	=	mlx/Makefile.gen
 

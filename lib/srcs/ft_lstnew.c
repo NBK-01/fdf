@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkanaan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/11 09:21:29 by nkanaan           #+#    #+#             */
-/*   Updated: 2024/07/11 09:21:31 by nkanaan          ###   ########.fr       */
+/*   Created: 2024/06/14 11:26:33 by nkanaan           #+#    #+#             */
+/*   Updated: 2024/06/14 18:42:27 by nkanaan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/main.h"
+#include "../lib.h"
 
-void	read_file(char *line, t_file **file)
+t_file	*ft_lstnew(char *content)
 {
-	t_file *new;
+	t_file	*node;
 
-	new = ft_lstnew(line);
-	ft_lstadd_back(file, new);
-}
-
-void	store_file(char *path, t_file **file)
-{
-	int	fd;
-	char	*line;
-
-	fd = open(path, O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
-		read_file(line, file);
-	close(fd);
+	node = malloc(sizeof(t_file));
+	if (!node)
+		return (NULL);
+	node->line = content;
+	node->next = NULL;
+	return (node);
 }

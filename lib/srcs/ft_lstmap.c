@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkanaan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/11 09:21:29 by nkanaan           #+#    #+#             */
-/*   Updated: 2024/07/11 09:21:31 by nkanaan          ###   ########.fr       */
+/*   Created: 2024/06/24 11:25:33 by nkanaan           #+#    #+#             */
+/*   Updated: 2024/06/24 11:44:07 by nkanaan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/main.h"
+#include "libft.h"
 
-void	read_file(char *line, t_file **file)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_file *new;
+	t_list	*new;
+	t_list	*res;
 
-	new = ft_lstnew(line);
-	ft_lstadd_back(file, new);
-}
-
-void	store_file(char *path, t_file **file)
-{
-	int	fd;
-	char	*line;
-
-	fd = open(path, O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
-		read_file(line, file);
-	close(fd);
+	res = NULL;
+	while (lst)
+	{
+		new = ft_lstnew(f(lst->content));
+		if (!new)
+			ft_lstdelone(new, del);
+		else
+			ft_lstadd_back(&res, new);
+		lst = lst->next;
+	}
+	return (res);
 }

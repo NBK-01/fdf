@@ -13,6 +13,12 @@
 #ifndef MAIN_H
 # define MAIN_H
 
+typedef struct s_file
+{
+	char	*line;
+	struct s_file *next;
+}	t_file;
+
 # include "../mlx/mlx.h"
 # include "../lib/lib.h"
 # include <X11/X.h>
@@ -24,6 +30,7 @@ typedef struct s_data
 	void *win_ptr;
 	void *img_ptr;
 }	t_data;
+
 
 typedef struct s_map
 {
@@ -37,9 +44,10 @@ typedef struct s_map
 /*/////////////////////////////////////////////////////////////////////////*/
 int	validate_args(int ac, char **av);
 void	init_fdf(char *av);
+void	store_file(char *path, t_file **file);
 int	get_width(char *path);
-int	get_height(char *path);
-void	get_alt(char *path, t_map *map);
+void	get_height(t_file **file, t_map *map);
+void	get_alt(t_file **file, t_map *map);
 
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				MLX AND HOOKS				   */
@@ -47,13 +55,5 @@ void	get_alt(char *path, t_map *map);
 int	on_keypress(int keysym, t_data *data);
 int	on_destroy(t_data *data);
 void	init_window(char *path); //TEMPORARY
-//
-//
-typedef struct s_colors
-{
-	int	r;
-	int	g;
-	int	b;
-}	t_colors;
 
 #endif

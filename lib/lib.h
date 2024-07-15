@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "../includes/main.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
@@ -74,5 +75,8 @@ void	*ft_memset(void *dst, int c, size_t n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+t_file	*ft_lstnew(char *content);
+void	ft_lstadd_back(t_file **lst, t_file *new);
+t_file	*ft_lstlast(t_file *lst);
 
 #endif
