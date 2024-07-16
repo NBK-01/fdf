@@ -12,6 +12,8 @@
 
 #include "../includes/main.h"
 
+/* Get height by counting the amount of lines in the map
+* accessed from get next line func */
 void	get_height(t_file **file, t_map *map)
 {
 	int	height;
@@ -27,6 +29,7 @@ void	get_height(t_file **file, t_map *map)
 	map->height = height;
 }
 
+/* Getting width of map by splitting the first line */
 void	get_width(t_file **file, t_map *map)
 {
 	int	width;
@@ -47,7 +50,7 @@ void	get_width(t_file **file, t_map *map)
 	free(temp);
 }
 
-void	get_z(char *line, int *axis)
+static void	set_matrix_values(char *line, int *axis)
 {
 	char	**z;
 	int	i;
@@ -63,23 +66,23 @@ void	get_z(char *line, int *axis)
 	free(z);
 }
 
-void	get_alt(t_file **file, t_map *map)
+void	init_matrix(t_file **file, t_map *map)
 {
-	int	i;
+	int		i;
 	t_file	*head;
 
 	get_height(file, map);
 	get_width(file, map);
+	ft_printf("%d", map->width);
 	map->mat = (int **)malloc(sizeof(int*) * (map->height + 1));
 	i = 0;
 	while(i <= map->height)
 		map->mat[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
-	//map->mat[i] = NULL;
 	i = 0;
 	head = (*file);
 	while (head)
 	{
-		get_z(head->line, map->mat[i]);
+		set_matrix_values(head->line, map->mat[i]);
 		head = head->next;
 		i++;
 	}

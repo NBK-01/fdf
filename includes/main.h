@@ -40,16 +40,28 @@ typedef struct s_map
 	int	**mat;
 }	t_map;
 
+
+
+/*/////////////////////////////////////////////////////////////////////////*/
+/*				FREES | MEMORY				   */
+/*/////////////////////////////////////////////////////////////////////////*/
+void	free_ll(t_file **file);
+void	free_map(t_map *map);
+void	free_program(t_map *map, t_file **file);
+
+/*/////////////////////////////////////////////////////////////////////////*/
+/*				READ MAP | GNL				   */
+/*/////////////////////////////////////////////////////////////////////////*/
+int	read_file(char *path, t_file **file);
+
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				VALIDATION / PARSING			   */
 /*/////////////////////////////////////////////////////////////////////////*/
 int	validate_args(int ac, char **av);
-void	init_fdf(char *path, t_map *map, t_file **file);
-void	store_file(char *path, t_file **file);
+int	init_fdf(char *path, t_file **file);
 void	get_width(t_file **file, t_map *map);
 void	get_height(t_file **file, t_map *map);
-void	get_alt(t_file **file, t_map *map);
-void	del(char *line);
+void	init_matrix(t_file **file, t_map *map);
 
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				MLX AND HOOKS				   */

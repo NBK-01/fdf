@@ -14,7 +14,7 @@ INC	=	-I ./includes -I ./mlx
 
 LIB	=	-L ./mlx -lmlx -lXext -lX11 -lm -lbsd
 
-SRCS	= 	main parse validation map init mlx_hooks
+SRCS	= 	main parse validation map init mlx_hooks free
 
 SRC 	=	$(addprefix src/, $(addsuffix .c, $(SRCS)))
 

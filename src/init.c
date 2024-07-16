@@ -12,42 +12,23 @@
 
 #include "../includes/main.h"
 
-void	init_window(void)
+/* Initializing program "FDF" -> checking if file exists, then 
+* reading the map with read_file(see parse.c) 
+* and init 2d array with map values */
+int	init_fdf(char *path, t_file **file)
 {
-	t_data	data;
-	
-	data.mlx_ptr = mlx_init();
-	if (!data.mlx_ptr)
-		return ;
-	data.win_ptr = mlx_new_window(data.mlx_ptr, 600, 400, "fdf - nbk");
-	if (!data.win_ptr)
-		free(data.mlx_ptr);
- 
-	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
- 
-	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
- 
-	mlx_loop(data.mlx_ptr);
-}
+	int	fd;
+	t_map	*map;
 
-#include <stdio.h>
-void	init_fdf(char *path, t_map *map, t_file **file)
-{
-	int	i = 0;
-	int	j;
-	store_file(path, file);
-	get_alt(file, map);
-
-	while (i < map->height)
+	if ((fd = open(path, O_RDONLY)) < 0)
+		exit (ft_printf("Error: map doesn't exist / no permission\n"));
+	else
 	{
-		j = 0;
-		while (j < map->width)
-		{
-			printf("%3d", map->mat[i][j]);
-			j++;
-		}
-		i++;
-		printf("\n");
-	}
-}
+		map = (t_map*)malloc(sizeof(t_map));
+		read_file(path, file);
+		init_matrix(file, map);
 
+	}
+	free_program(map, file);
+	return (0);
+}

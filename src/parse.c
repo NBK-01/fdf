@@ -12,16 +12,15 @@
 
 #include "../includes/main.h"
 
-void	read_file(char *line, t_file **file)
+static void	set_ll(char *line, t_file **file)
 {
 	t_file *new;
 
 	new = ft_lstnew(line);
 	ft_lstadd_back(file, new);
-
 }
 
-void	store_file(char *path, t_file **file)
+int	read_file(char *path, t_file **file)
 {
 	int	fd;
 	char	*line;
@@ -30,8 +29,9 @@ void	store_file(char *path, t_file **file)
 	line = get_next_line(fd);
 	while (line)
 	{
-		read_file(line, file);
+		set_ll(line, file);
 		line = get_next_line(fd);
 	}
 	close(fd);
+	return (0);
 }
