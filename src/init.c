@@ -17,10 +17,11 @@
 * and init 2d array with map values */
 int	init_fdf(char *path, t_file **file)
 {
-	int	fd;
+	int		fd;
 	t_map	*map;
 
-	if ((fd = open(path, O_RDONLY)) < 0)
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
 		exit (ft_printf("Error: map doesn't exist / no permission\n"));
 	else
 	{

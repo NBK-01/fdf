@@ -16,11 +16,16 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "../includes/main.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
+
+typedef struct s_file
+{
+	char	*line;
+	struct s_file *next;
+}	t_file;
 
 char	*get_next_line(int fd);
 char	*ft_next(char *str);

@@ -12,29 +12,34 @@
 
 #include "../includes/main.h"
 
-int	validate_args(int ac, char **av)
+/* Iterate to index of (.) creat substr of (.xyz) -> cmp to fdf. 
+ * return err if != fdf */
+static int	check_ext(char *av)
 {
-	int				i;
-	char			*ext;
-	unsigned int	start;
+	int	i;
+	int	start;
+	char	*ext;
 
 	i = -1;
-	if (ac != 2)
-		exit (ft_printf("Error: wrong argument format\n"));
-	else
+	while (av[++i])
+		if (av[i] == '.')
+			start = i;
+	ext = ft_substr(av, start, ft_strlen(av));
+	if (ft_strcmp(ext, ".fdf") != 0)
 	{
-		while (av[1][++i])
-		{
-			if (av[1][i] == '.')
-				start = i;
-		}
-		ext = ft_substr(av[1], start, ft_strlen(av[1]));
-		if (ft_strcmp(ext, ".fdf") != 0)
-		{
-			free(ext);
-			exit (ft_printf("Error: map ext should be .fdf\n"));
-		}
+		free(ext);
+		return (1);
 	}
 	free(ext);
+	return (0);
+}
+
+/* Validating arguments, number of args + extension */
+int	validate_args(int ac, char **av)
+{
+	if (ac != 2)
+		return (ft_printf("Error: wrong argument format\n"));
+	if (check_ext(av[1]) > 0)
+		return (ft_printf("Error: map ext should be .fdf\n"));
 	return (0);
 }

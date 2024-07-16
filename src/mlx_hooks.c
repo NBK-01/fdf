@@ -44,16 +44,12 @@ int	on_destroy(t_data *data)
 	free(data->mlx_ptr);
 	exit (0);
 }
-/*
-# define EVEN(nbr) (nbr % 2 == 0) ? 1 : 0;
-# define MAX(nbr);
-# define ABS(Value) ((Value < 0) ? -(Value) : (Value))
 
-float	algo(float x, float y, float x1, float x2)
+int	algo(int x, int y, int x1, int x2)
 {
 	int	x_next;
 	int	y_next;
 
 	x_next = x / x1;
 	y_next = y / y2;
-}*/
+}

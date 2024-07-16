@@ -13,25 +13,22 @@
 #ifndef MAIN_H
 # define MAIN_H
 
-typedef struct s_file
-{
-	char	*line;
-	struct s_file *next;
-}	t_file;
-
 # include "../mlx/mlx.h"
 # include "../lib/lib.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
 
+/*/////////////////////////////////////////////////////////////////////////*/
+/*				STRUCTS | LL				   */
+/*/////////////////////////////////////////////////////////////////////////*/
+
 typedef struct s_data
 {
-	void *mlx_ptr;
-	void *win_ptr;
-	void *img_ptr;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
 }	t_data;
-
 
 typedef struct s_map
 {
@@ -41,6 +38,11 @@ typedef struct s_map
 }	t_map;
 
 
+/*/////////////////////////////////////////////////////////////////////////*/
+/*			IDK IF THIS IS ALLOWED				   */
+/*/////////////////////////////////////////////////////////////////////////*/
+# define EVEN(nbr) (nbr % 2 == 0) ? 1 : 0;
+# define ABS(Value) ((Value < 0) ? -(Value) : (Value))
 
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				FREES | MEMORY				   */
@@ -52,13 +54,13 @@ void	free_program(t_map *map, t_file **file);
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				READ MAP | GNL				   */
 /*/////////////////////////////////////////////////////////////////////////*/
-int	read_file(char *path, t_file **file);
+int		read_file(char *path, t_file **file);
 
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				VALIDATION / PARSING			   */
 /*/////////////////////////////////////////////////////////////////////////*/
-int	validate_args(int ac, char **av);
-int	init_fdf(char *path, t_file **file);
+int		validate_args(int ac, char **av);
+int		init_fdf(char *path, t_file **file);
 void	get_width(t_file **file, t_map *map);
 void	get_height(t_file **file, t_map *map);
 void	init_matrix(t_file **file, t_map *map);
@@ -66,8 +68,8 @@ void	init_matrix(t_file **file, t_map *map);
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				MLX AND HOOKS				   */
 /*/////////////////////////////////////////////////////////////////////////*/
-int	on_keypress(int keysym, t_data *data);
-int	on_destroy(t_data *data);
+int		on_keypress(int keysym, t_data *data);
+int		on_destroy(t_data *data);
 void	init_window(void); //TEMPORARY
 
 #endif

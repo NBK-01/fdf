@@ -18,7 +18,9 @@ int	main(int ac, char *av[])
 
 	file = NULL;
 	if (validate_args(ac, av) < 1)
+	{
 		init_fdf(av[1], &file);
-	init_window();
+		init_window();
+	}
 	return (0);
 }
