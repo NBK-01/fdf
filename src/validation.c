@@ -20,7 +20,7 @@ int	validate_args(int ac, char **av)
 
 	i = -1;
 	if (ac != 2)
-		return (ft_printf("Error: wrong argument format\n"));
+		exit (ft_printf("Error: wrong argument format\n"));
 	else
 	{
 		while (av[1][++i])

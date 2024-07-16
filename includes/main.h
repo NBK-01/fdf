@@ -46,7 +46,7 @@ typedef struct s_map
 int	validate_args(int ac, char **av);
 void	init_fdf(char *path, t_map *map, t_file **file);
 void	store_file(char *path, t_file **file);
-int	get_width(char *path);
+void	get_width(t_file **file, t_map *map);
 void	get_height(t_file **file, t_map *map);
 void	get_alt(t_file **file, t_map *map);
 void	del(char *line);

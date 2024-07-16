@@ -15,10 +15,7 @@
 void	get_height(t_file **file, t_map *map)
 {
 	int	height;
-	int	width;
-	//char	**temp;
 	t_file	*head;
-	//char	**temp;
 
 	head = (*file);
 	height = 0;
@@ -27,15 +24,27 @@ void	get_height(t_file **file, t_map *map)
 		head = head->next;
 		height++;
 	}
-	//head = (*file);
-	//temp = ft_split(head->line, ' ');
-	width = 19;
-	//while (temp[width])
-		//width++;
-	//ft_printf("WIDTH: %d\nHEIGHT: %d\n", width, height);
 	map->height = height;
+}
+
+void	get_width(t_file **file, t_map *map)
+{
+	int	width;
+	t_file	*head;
+	char	**temp;
+
+	head = (*file);
+	width = 0;
+	temp = ft_split(head->line, ' ');
+	while (temp[width])
+		width++;
 	map->width = width;
-	//free(temp);
+	while (width >= 0)
+	{
+		free(temp[width]);
+		width--;
+	}
+	free(temp);
 }
 
 void	get_z(char *line, int *axis)
@@ -60,6 +69,7 @@ void	get_alt(t_file **file, t_map *map)
 	t_file	*head;
 
 	get_height(file, map);
+	get_width(file, map);
 	map->mat = (int **)malloc(sizeof(int*) * (map->height + 1));
 	i = 0;
 	while(i <= map->height)

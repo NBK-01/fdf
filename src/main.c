@@ -29,10 +29,12 @@ int	main(int ac, char *av[])
 	t_map	*map;
 	t_file	*file;
 
-	map = (t_map*)malloc(sizeof(t_map));
 	file = NULL;
 	if (validate_args(ac, av) < 1)
+	{
+		map = (t_map*)malloc(sizeof(t_map));
 		init_fdf(av[1], map, &file);
+	}
 	free_line(&file);
 	ft_lstclear(&file, del);
 	int	i = 0;
