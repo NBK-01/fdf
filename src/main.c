@@ -41,8 +41,10 @@ int	main(int ac, char *av[])
 		free(map->mat[i]);
 		i++;
 	}
+	//free(map->mat[i]);
 	free(map->mat);
 	free(map);
+	init_window();
 	return (0);
 }
 

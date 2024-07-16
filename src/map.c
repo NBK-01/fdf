@@ -64,6 +64,7 @@ void	get_alt(t_file **file, t_map *map)
 	i = 0;
 	while(i <= map->height)
 		map->mat[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
+	//map->mat[i] = NULL;
 	i = 0;
 	head = (*file);
 	while (head)
@@ -72,5 +73,4 @@ void	get_alt(t_file **file, t_map *map)
 		head = head->next;
 		i++;
 	}
-	map->mat[i] = NULL;
 }

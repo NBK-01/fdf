@@ -29,10 +29,10 @@ int	validate_args(int ac, char **av)
 				start = i;
 		}
 		ext = ft_substr(av[1], start, ft_strlen(av[1]));
-		if (ft_strncmp(ext, ".fdf", 4) != 0)
+		if (ft_strcmp(ext, ".fdf") != 0)
 		{
 			free(ext);
-			return (ft_printf("Error: map ext should be .fdf\n"));
+			exit (ft_printf("Error: map ext should be .fdf\n"));
 		}
 	}
 	free(ext);

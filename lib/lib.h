@@ -39,6 +39,7 @@ int		ft_putnbr_fd(int n, int fd);
 int		ft_putnbr_unsigned_fd(unsigned int n, int fd);
 int		ft_putstr_fd(char *s, int fd);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_toupper(int c);
 int		ft_putptr(unsigned long ptr);
 int		ft_putptr_lowercase(unsigned int ptr);

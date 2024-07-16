@@ -12,11 +12,10 @@
 
 #include "../includes/main.h"
 
-void	init_window(char *av)
+void	init_window(void)
 {
 	t_data	data;
 	
-	(void)av;
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 		return ;
@@ -36,6 +35,5 @@ void	init_fdf(char *path, t_map *map, t_file **file)
 	store_file(path, file);
 	get_alt(file, map);
 	//ft_printf("%d", map->mat[2][2]);
-	init_window(path);
 }
 

@@ -23,6 +23,7 @@ typedef struct s_file
 # include "../lib/lib.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <math.h>
 
 typedef struct s_data
 {
@@ -55,6 +56,6 @@ void	del(char *line);
 /*/////////////////////////////////////////////////////////////////////////*/
 int	on_keypress(int keysym, t_data *data);
 int	on_destroy(t_data *data);
-void	init_window(char *path); //TEMPORARY
+void	init_window(void); //TEMPORARY
 
 #endif
