@@ -28,6 +28,7 @@ int	init_fdf(char *path, t_file **file)
 		map = (t_map*)malloc(sizeof(t_map));
 		read_file(path, file);
 		init_matrix(file, map);
+		init_window(map);
 
 	}
 	free_program(map, file);

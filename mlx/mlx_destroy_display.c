@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkanaan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 18:18:55 by nkanaan           #+#    #+#             */
-/*   Updated: 2024/07/11 11:40:31 by nkanaan          ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/main.h"
+#include "mlx_int.h"
 
-int	main(int ac, char *av[])
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	t_file	*file;
-
-	file = NULL;
-	if (validate_args(ac, av) < 1)
-		init_fdf(av[1], &file);
-	return (0);
+	XCloseDisplay(xvar->display);
 }

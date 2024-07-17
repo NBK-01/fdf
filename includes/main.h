@@ -23,13 +23,6 @@
 /*				STRUCTS | LL				   */
 /*/////////////////////////////////////////////////////////////////////////*/
 
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-}	t_data;
-
 typedef struct s_map
 {
 	int	width;
@@ -37,12 +30,32 @@ typedef struct s_map
 	int	**mat;
 }	t_map;
 
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int	bits_per_pixel;
+	int	line_length;
+	int	endian;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
+	float		zoom;
+	int		color;
+	int	pos_x;
+	int	pos_y;
+	float	rot;
+	t_map	*map;
+}	t_data;
+
+
 
 /*/////////////////////////////////////////////////////////////////////////*/
 /*			IDK IF THIS IS ALLOWED				   */
 /*/////////////////////////////////////////////////////////////////////////*/
-# define EVEN(nbr) (nbr % 2 == 0) ? 1 : 0;
+# define MAX(i, j) ((i > j) ? i : j)
 # define ABS(Value) ((Value < 0) ? -(Value) : (Value))
+# define MOD(a) ((a < 0) ? -a : a)
 
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				FREES | MEMORY				   */
@@ -70,6 +83,8 @@ void	init_matrix(t_file **file, t_map *map);
 /*/////////////////////////////////////////////////////////////////////////*/
 int		on_keypress(int keysym, t_data *data);
 int		on_destroy(t_data *data);
-void	init_window(void); //TEMPORARY
+void	init_window(t_map *map); //TEMPORARY
+void	algo(float x, float y, float x1, float y1, t_data *data, t_map *map);
+void	draw(t_data *data, t_map *map);
 
 #endif
