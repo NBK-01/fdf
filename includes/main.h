@@ -22,7 +22,6 @@
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				STRUCTS | LL				   */
 /*/////////////////////////////////////////////////////////////////////////*/
-
 typedef struct s_map
 {
 	int	width;
@@ -32,23 +31,32 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	void	*img;
-	char	*addr;
-	int	bits_per_pixel;
-	int	line_length;
-	int	endian;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
-	float		zoom;
+	void	*img;
+	void	*control_panel;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		pos_x;
+	int		pos_y;
+	float	zoom;
+	float	rot_x;
+	float	rot_y;
+	int		scale;
+	int		height;
+	int		width;
 	int		color;
-	int	pos_x;
-	int	pos_y;
-	float	rot;
 	t_map	*map;
+	t_file	**file;
+	int		x;
+	int		y;
+	int		z;
+	float	x_next;
+	float	y_next;
 }	t_data;
-
-
 
 /*/////////////////////////////////////////////////////////////////////////*/
 /*			IDK IF THIS IS ALLOWED				   */
@@ -56,6 +64,10 @@ typedef struct s_data
 # define MAX(i, j) ((i > j) ? i : j)
 # define ABS(Value) ((Value < 0) ? -(Value) : (Value))
 # define MOD(a) ((a < 0) ? -a : a)
+# define R(a) (a) >> 16
+# define G(a) ((a) >> 8) & 0xFF
+# define B(a) (a) & 0xFF
+# define RGB(a, b, c) ((a) << 16) + ((b) << 8) + (c)
 
 /*/////////////////////////////////////////////////////////////////////////*/
 /*				FREES | MEMORY				   */
@@ -83,8 +95,14 @@ void	init_matrix(t_file **file, t_map *map);
 /*/////////////////////////////////////////////////////////////////////////*/
 int		on_keypress(int keysym, t_data *data);
 int		on_destroy(t_data *data);
-void	init_window(t_map *map); //TEMPORARY
-void	algo(float x, float y, float x1, float y1, t_data *data, t_map *map);
+int		perp_render(t_data *data);
+int		gradient(int startcolor, int endcolor, int len, int pix);
+void	init_window(t_map *map, t_file **file); //TEMPORARY
+void	algo(float x1, float y1, t_data *data);
 void	draw(t_data *data, t_map *map);
+void	draw_panel(t_data *data);
+void	iso_project(float *x, float *y, int z, t_data *data);
+void	ft_put_pixel(t_data *data, int x, int y, int color);
+void	draw_background(t_data *data);
 
 #endif

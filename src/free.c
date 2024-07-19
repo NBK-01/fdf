@@ -53,4 +53,3 @@ void	free_program(t_map *map, t_file **file)
 	free_ll(file);
 	ft_lstclear(file, del);
 }
-

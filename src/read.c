@@ -14,7 +14,7 @@
 
 static void	set_ll(char *line, t_file **file)
 {
-	t_file *new;
+	t_file	*new;
 
 	new = ft_lstnew(line);
 	ft_lstadd_back(file, new);
@@ -22,11 +22,13 @@ static void	set_ll(char *line, t_file **file)
 
 int	read_file(char *path, t_file **file)
 {
-	int	fd;
+	int		fd;
 	char	*line;
 
 	fd = open(path, O_RDONLY);
 	line = get_next_line(fd);
+	if (!line)
+		return (ft_printf("Erorr: nothing to render"));
 	while (line)
 	{
 		set_ll(line, file);

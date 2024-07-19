@@ -16,8 +16,8 @@
  * return err if != fdf */
 static int	check_ext(char *av)
 {
-	int	i;
-	int	start;
+	int		i;
+	int		start;
 	char	*ext;
 
 	i = -1;

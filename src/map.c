@@ -32,7 +32,7 @@ static void	set_matrix_values(char *line, int *arr)
 * accessed from get next line func */
 void	get_height(t_file **file, t_map *map)
 {
-	int	height;
+	int		height;
 	t_file	*head;
 
 	head = (*file);
@@ -48,7 +48,7 @@ void	get_height(t_file **file, t_map *map)
 /* Getting width of map by splitting the first line */
 void	get_width(t_file **file, t_map *map)
 {
-	int	width;
+	int		width;
 	t_file	*head;
 	char	**temp;
 
@@ -76,9 +76,9 @@ void	init_matrix(t_file **file, t_map *map)
 
 	get_height(file, map);
 	get_width(file, map);
-	map->mat = (int **)malloc(sizeof(int*) * (map->height + 1));
+	map->mat = (int **)malloc(sizeof(int *) * (map->height + 1));
 	i = 0;
-	while(i <= map->height)
+	while (i <= map->height)
 		map->mat[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
 	i = 0;
 	head = (*file);
