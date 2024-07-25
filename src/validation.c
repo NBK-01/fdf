@@ -22,15 +22,19 @@ static int	check_ext(char *av)
 
 	i = -1;
 	while (av[++i])
-		if (av[i] == '.')
-			start = i;
-	ext = ft_substr(av, start, ft_strlen(av));
-	if (ft_strcmp(ext, ".fdf") != 0)
 	{
+		if (av[i] == '.')
+		{
+			start = i;
+			ext = ft_substr(av, start, ft_strlen(av));
+			if (ft_strcmp(ext, ".fdf") != 0)
+			{
+				free(ext);
+				return (1);
+			}
 		free(ext);
-		return (1);
+		}
 	}
-	free(ext);
 	return (0);
 }
 

@@ -63,5 +63,6 @@ void	init_window(t_map *map, t_file **file)
 	var_init(&data, file, map);
 	mlx_key_hook(data.win_ptr, on_keypress, &data);
 	mlx_loop_hook(data.mlx_ptr, perp_render, &data);
+	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
 	mlx_loop(data.mlx_ptr);
 }
